@@ -7,21 +7,11 @@ import java.util.Collection;
  * Created by Роман on 22.06.2017.
  */
 @Entity
-@Table(name = "role", schema = "mydbtest", catalog = "")
-public class RoleEntity {
-    private long id;
+@Table(name = "role", schema = "mydbtest")
+public class RoleEntity extends AbstractEntity{
+
     private String roleNames;
     private Collection<UsersEntity> usersById;
-
-    @Id
-    @Column(name = "id", nullable = false)
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "role_names", nullable = false, length = 45)
@@ -60,5 +50,13 @@ public class RoleEntity {
 
     public void setUsersById(Collection<UsersEntity> usersById) {
         this.usersById = usersById;
+    }
+
+    @Override
+    public String toString() {
+        return "RoleEntity{" +
+                "roleNames='" + roleNames + '\'' +
+                ", id=" + id +
+                '}';
     }
 }

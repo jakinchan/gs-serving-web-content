@@ -7,24 +7,14 @@ import java.util.Collection;
  * Created by Роман on 22.06.2017.
  */
 @Entity
-@Table(name = "products", schema = "mydbtest", catalog = "")
-public class ProductsEntity {
-    private long id;
+@Table(name = "products", schema = "mydbtest")
+public class ProductsEntity extends AbstractEntity{
     private int count;
     private String description;
     private String name;
     private long price;
     private Collection<BasketProductsEntity> basketProductsById;
 
-    @Id
-    @Column(name = "id", nullable = false)
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
 
     @Basic
     @Column(name = "count", nullable = false)
@@ -100,4 +90,16 @@ public class ProductsEntity {
     public void setBasketProductsById(Collection<BasketProductsEntity> basketProductsById) {
         this.basketProductsById = basketProductsById;
     }
+
+    @Override
+    public String toString() {
+        return "ProductsEntity{" +
+                "count=" + count +
+                ", id=" + id +
+                ", description='" + description + '\'' +
+                ", name='" + name + '\'' +
+                ", price=" + price +
+                '}';
+    }
+
 }

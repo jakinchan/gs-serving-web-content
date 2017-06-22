@@ -1,7 +1,9 @@
 package com.test.boot.controller;
 
+import com.test.boot.DAO.BasketProduct;
 import com.test.boot.DAO.Products;
 import com.test.boot.DAO.User;
+import com.test.boot.Model.BasketProductsEntity;
 import com.test.boot.Model.ProductsEntity;
 import com.test.boot.Model.UsersEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,6 +27,9 @@ public class GreetingController {
     @Autowired
     Products products;
 
+    @Autowired
+    BasketProduct basketProduct;
+
 
     @RequestMapping("/front")
     public String front(Model model) {
@@ -33,6 +38,9 @@ public class GreetingController {
         Iterable<ProductsEntity> list = products.findAll();
         list.forEach(productsEntity -> System.out.println(productsEntity));
         model.addAttribute("user", usersEntity);
+
+        Iterable<BasketProductsEntity> basketProductsEntities = basketProduct.findAll();
+        basketProductsEntities.forEach(basketProductsEntity -> System.out.println(basketProductsEntity));
 
 //        UserDao user = new UserHiberDao();
 //        UserdbEntity userdbEntity = user.selectByLoginPassword("roma", "roma");
