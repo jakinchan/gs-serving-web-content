@@ -99,6 +99,4 @@ public class BasketProductsEntity {
     public void setUsersByIdBuyer(UsersEntity usersByIdBuyer) {
         this.usersByIdBuyer = usersByIdBuyer;
     }
-
-
 }

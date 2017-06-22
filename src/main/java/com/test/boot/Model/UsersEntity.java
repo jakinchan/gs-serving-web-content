@@ -13,8 +13,8 @@ public class UsersEntity {
     private String email;
     private String name;
     private String password;
-    private long idRole;
     private Collection<BasketProductsEntity> basketProductsById;
+    private RoleEntity roleByIdRole;
 
     @Id
     @Column(name = "id", nullable = false)
@@ -56,16 +56,6 @@ public class UsersEntity {
         this.password = password;
     }
 
-    @Basic
-    @Column(name = "id_role", nullable = false)
-    public long getIdRole() {
-        return idRole;
-    }
-
-    public void setIdRole(long idRole) {
-        this.idRole = idRole;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -74,7 +64,6 @@ public class UsersEntity {
         UsersEntity that = (UsersEntity) o;
 
         if (id != that.id) return false;
-        if (idRole != that.idRole) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
         if (name != null ? !name.equals(that.name) : that.name != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
@@ -88,7 +77,6 @@ public class UsersEntity {
         result = 31 * result + (email != null ? email.hashCode() : 0);
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (int) (idRole ^ (idRole >>> 32));
         return result;
     }
 
@@ -99,5 +87,15 @@ public class UsersEntity {
 
     public void setBasketProductsById(Collection<BasketProductsEntity> basketProductsById) {
         this.basketProductsById = basketProductsById;
+    }
+
+    @ManyToOne
+    @JoinColumn(name = "id_role", referencedColumnName = "id", nullable = false)
+    public RoleEntity getRoleByIdRole() {
+        return roleByIdRole;
+    }
+
+    public void setRoleByIdRole(RoleEntity roleByIdRole) {
+        this.roleByIdRole = roleByIdRole;
     }
 }

@@ -29,7 +29,7 @@ public class GreetingController {
     @RequestMapping("/front")
     public String front(Model model) {
         UsersEntity usersEntity = user.findByNameAndPassword("roma", "roma");
-        System.out.println(usersEntity.getName() + "  " + usersEntity.getIdRole());
+        System.out.println(usersEntity.getName() + "  " + usersEntity.getRoleByIdRole().getRoleNames());
         Iterable<ProductsEntity> list = products.findAll();
         list.forEach(productsEntity -> System.out.println(productsEntity));
         model.addAttribute("user", usersEntity);

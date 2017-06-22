@@ -1,20 +1,19 @@
 package com.test.boot.Model;
 
 import javax.persistence.*;
-import java.io.Serializable;
+import java.util.Collection;
 
 /**
  * Created by Роман on 22.06.2017.
  */
 @Entity
 @Table(name = "role", schema = "mydbtest", catalog = "")
-public class RoleEntity implements Serializable  {
+public class RoleEntity {
     private long id;
     private String roleNames;
-    private UsersEntity usersById;
+    private Collection<UsersEntity> usersById;
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
     @Column(name = "id", nullable = false)
     public long getId() {
         return id;
@@ -24,7 +23,7 @@ public class RoleEntity implements Serializable  {
         this.id = id;
     }
 
-    @Id
+    @Basic
     @Column(name = "role_names", nullable = false, length = 45)
     public String getRoleNames() {
         return roleNames;
@@ -54,13 +53,12 @@ public class RoleEntity implements Serializable  {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "id", referencedColumnName = "id_role", nullable = false)
-    public UsersEntity getUsersById() {
+    @OneToMany(mappedBy = "roleByIdRole")
+    public Collection<UsersEntity> getUsersById() {
         return usersById;
     }
 
-    public void setUsersById(UsersEntity usersById) {
+    public void setUsersById(Collection<UsersEntity> usersById) {
         this.usersById = usersById;
     }
 }

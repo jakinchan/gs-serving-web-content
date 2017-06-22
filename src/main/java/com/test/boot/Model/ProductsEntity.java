@@ -100,16 +100,4 @@ public class ProductsEntity {
     public void setBasketProductsById(Collection<BasketProductsEntity> basketProductsById) {
         this.basketProductsById = basketProductsById;
     }
-
-    @Override
-    public String toString() {
-        return "ProductsEntity{" +
-                "id=" + id +
-                ", count=" + count +
-                ", description='" + description + '\'' +
-                ", name='" + name + '\'' +
-                ", price=" + price +
-                '}';
-    }
 }
-
