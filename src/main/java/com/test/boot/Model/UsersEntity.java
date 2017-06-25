@@ -7,11 +7,12 @@ import java.util.Collection;
  * Created by Роман on 22.06.2017.
  */
 @Entity
-@Table(name = "users", schema = "mydbtest")
+@Table(name = "users")
 public class UsersEntity extends AbstractEntity {
     private String email;
-    private String name;
+    private String username;
     private String password;
+    private String passwordConfirm;
     private Collection<BasketProductsEntity> basketProductsById;
     private RoleEntity roleByIdRole;
 
@@ -27,13 +28,13 @@ public class UsersEntity extends AbstractEntity {
     }
 
     @Basic
-    @Column(name = "name", nullable = false, length = 45)
-    public String getName() {
-        return name;
+    @Column(name = "username", nullable = false, length = 45)
+    public String getUsername() {
+        return username;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     @Basic
@@ -55,7 +56,7 @@ public class UsersEntity extends AbstractEntity {
 
         if (id != that.id) return false;
         if (email != null ? !email.equals(that.email) : that.email != null) return false;
-        if (name != null ? !name.equals(that.name) : that.name != null) return false;
+        if (username != null ? !username.equals(that.username) : that.username != null) return false;
         if (password != null ? !password.equals(that.password) : that.password != null) return false;
 
         return true;
@@ -65,7 +66,7 @@ public class UsersEntity extends AbstractEntity {
     public int hashCode() {
         int result = (int) (id ^ (id >>> 32));
         result = 31 * result + (email != null ? email.hashCode() : 0);
-        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (username != null ? username.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
         return result;
     }
@@ -94,9 +95,18 @@ public class UsersEntity extends AbstractEntity {
         return "UsersEntity{" +
                 "email='" + email + '\'' +
                 ", id=" + id +
-                ", name='" + name + '\'' +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", roleByIdRole=" + roleByIdRole.getUsersById() +
                 '}';
+    }
+
+    @Transient
+    public String getPasswordConfirm() {
+        return passwordConfirm;
+    }
+
+    public void setPasswordConfirm(String passwordConfirm) {
+        this.passwordConfirm = passwordConfirm;
     }
 }

@@ -7,7 +7,7 @@ import java.util.Collection;
  * Created by Роман on 22.06.2017.
  */
 @Entity
-@Table(name = "role", schema = "mydbtest")
+@Table(name = "role")
 public class RoleEntity extends AbstractEntity{
 
     private String roleNames;

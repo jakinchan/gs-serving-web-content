@@ -3,11 +3,8 @@ package com.test.boot.Model;
 import javax.persistence.*;
 import java.sql.Date;
 
-/**
- * Created by Роман on 22.06.2017.
- */
 @Entity
-@Table(name = "basket_products", schema = "mydbtest")
+@Table(name = "basket_products")
 public class BasketProductsEntity extends AbstractEntity {
 
     private int countProduct;
